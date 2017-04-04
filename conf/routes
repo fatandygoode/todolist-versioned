@@ -1,12 +1,20 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
-# ~~~~
+# ~
+
+GET     /                                       Start.index
+
+# Accounts
+GET    /signup                                  Accounts.signup
+GET    /login                                   Accounts.login
+POST   /register                                Accounts.register
+POST   /authenticate                            Accounts.authenticate
+GET    /logout                                  Accounts.logout
 
 # Home page
-GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
+GET     /dashboard/{id}/deletetodo/{todoid}     Dashboard.deleteTodo
 GET     /about                                  About.index
-GET     /dashboard/deletetodo/{id}              Dashboard.deleteTodo
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
