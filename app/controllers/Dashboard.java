@@ -9,16 +9,14 @@ import java.util.List;
 
 public class Dashboard extends Controller
 {
-  public static void index()
-  {
+  public static void index() {
     Logger.info("Rendering Dashboard");
     Member member = Accounts.getLoggedInMember();
     List<Todo> todolist = member.todolist;
     render("dashboard.html", member, todolist);
   }
 
-  public static void addTodo(String title)
-  {
+  public static void addTodo(String title) {
     Member member = Accounts.getLoggedInMember();
     Todo todo = new Todo(title);
     member.todolist.add(todo);
