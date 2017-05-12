@@ -25,8 +25,7 @@ public class Dashboard extends Controller
     redirect("/dashboard");
   }
 
-  public static void deleteTodo(Long id, Long todoid)
-  {
+  public static void deleteTodo(Long id, Long todoid) {
     Member member = Member.findById(id);
     Todo todo = Todo.findById(todoid);
     member.todolist.remove(todo);
