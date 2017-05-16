@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/webdev_assignment_2.iml" filepath="$PROJECT_DIR$/.idea/webdev_assignment_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/web_dev_assignment_2.iml" filepath="$PROJECT_DIR$/.idea/web_dev_assignment_2.iml" />
+      <module fileurl="file://C:\Users\John\Documents\web_dev_assignment_2\.idea\webdev_assignment_2.iml" filepath="C:\Users\John\Documents\web_dev_assignment_2\.idea\webdev_assignment_2.iml" />
     </modules>
   </component>
 </project>
