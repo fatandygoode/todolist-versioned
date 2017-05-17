@@ -4,7 +4,6 @@ import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
-
 public class Accounts extends Controller {
     public static void signup() {
         render("signup.html");
@@ -14,16 +13,16 @@ public class Accounts extends Controller {
         render("login.html");
     }
 
-    public static void register(String firstname, String lastname, String email, String password) {
+    public static void register(String email, String password,String firstName, String lastName, String gender,
+                                double height, double startingWeight) {
         Logger.info("Registering new user " + email);
-        Member member = new Member(firstname, lastname, email, password);
+        Member member = new Member(email, password, firstName, lastName, gender, height, startingWeight);
         member.save();
-        redirect("/");
+        redirect("/login");
     }
 
     public static void authenticate(String email, String password) {
         Logger.info("Attempting to authenticate with " + email + ":" + password);
-
         Member member = Member.findByEmail(email);
         if ((member != null) && (member.checkPassword(password) == true)) {
             Logger.info("Authentication successful");
