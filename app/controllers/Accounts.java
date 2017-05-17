@@ -14,9 +14,10 @@ public class Accounts extends Controller {
         render("login.html");
     }
 
-    public static void register(String firstname, String lastname, String email, String password) {
+    public static void register(String firstName, String lastName, String gender, String email, String password,
+                                double height, double startingWeight) {
         Logger.info("Registering new user " + email);
-        Member member = new Member(firstname, lastname, email, password);
+        Member member = new Member(firstName, lastName, gender, email, password, height, startingWeight);
         member.save();
         redirect("/");
     }
