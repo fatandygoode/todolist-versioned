@@ -2,10 +2,13 @@ package controllers;
 
 import models.Assessment;
 import models.Member;
-import models.Todo;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class Dashboard extends Controller
@@ -17,7 +20,7 @@ public class Dashboard extends Controller
     render("dashboard.html", member, assessments);
   }
 
-  public static void addAssessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
+  public static void addAssessment(Date date, Time time, double weight, double chest, double thigh, double upperArm, double waist, double hips) {
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips);
     member.assessments.add(assessment);

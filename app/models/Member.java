@@ -5,8 +5,7 @@ import play.db.jpa.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Member extends Person {
@@ -37,6 +36,22 @@ public class Member extends Person {
     public void setStartingWeight(double startingWeight) {
         this.startingWeight = startingWeight;
     }
+
+    /*public double getCurrentWeight() {
+        double weight = getStartingWeight();
+        if (latestAssessment() != null) {
+            weight = latestAssessment().getWeight();
+        }
+        return weight;
+    }
+
+    public Assessment latestAssessment() {
+        return assessments.get(sortedAssessmentDates().last());
+    }
+
+    public SortedSet<Date> sortedAssessmentDates() {
+        return new TreeSet<>(assessments.keySet());
+    }*/
 
     public static Member findByEmail(String email)
     {

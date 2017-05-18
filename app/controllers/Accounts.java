@@ -22,6 +22,22 @@ public class Accounts extends Controller {
         redirect("/");
     }
 
+    public static void update(String firstName, String lastName, String gender, String email, String password,
+                                double height, double startingWeight) {
+        Logger.info("Updating settings for user: " + email);
+        Member member = getLoggedInMember();
+        member.setFirstName(firstName);
+        member.setLastName(lastName);
+        member.setGender(gender);
+        member.setEmail(email);
+        member.setPassword(password);
+        member.setHeight(height);
+        member.setStartingWeight(startingWeight);
+        member.save();
+        redirect("/dashboard");
+    }
+
+
     public static void authenticate(String email, String password) {
         Logger.info("Attempting to authenticate with " + email + ":" + password);
 

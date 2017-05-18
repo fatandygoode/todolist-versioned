@@ -40,8 +40,15 @@ public class Person extends Model {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(String newGender) {
+        String oldGender = getGender();
+        if (newGender != null){
+            this.gender = newGender;
+        } else if (oldGender != null && !oldGender.equals("Unspecified")) {
+            this.gender = oldGender;
+        } else {
+            this.gender = "Unspecified";
+        }
     }
 
     public String getEmail() {

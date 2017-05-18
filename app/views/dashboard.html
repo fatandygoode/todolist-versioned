@@ -1,35 +1,42 @@
 #{extends 'main.html' /}
 #{set title:'Dashboard' /}
-
 #{menu id:"dashboard"/}
 
 <form class="ui stacked segment form" name="addAssessment" action="/dashboard/addAssessment" method="POST">
-    <div class="three fields">
+    <div class="two fields">
+        <div class="field">
+            <label>Date</label>
+            <input placeholder="dd/mm/yyyy" type="date" name="date">
+        </div>
+        <div class="field">
+            <label>Time</label>
+            <input placeholder="hh:mm" type="time" name="time">
+        </div>
+    </div>
+    <div class="six fields">
         <div class="field">
             <label>Weight</label>
-            <input placeholder="kg" type="text" name="weight">
+            <input placeholder="kg" type="number" min="0" max="250" step="0.1" name="weight">
         </div>
         <div class="field">
             <label>Chest</label>
-            <input placeholder="cm" type="text" name="chest">
+            <input placeholder="cm" type="number" min="0" value="0" step="0.1" name="chest">
         </div>
         <div class="field">
             <label>Thigh</label>
-            <input placeholder="cm" type="text" name="thigh">
+            <input placeholder="cm" type="number" min="0" value="0" step="0.1" name="thigh">
         </div>
-    </div>
-    <div class="three fields">
         <div class="field">
             <label>Upper Arm</label>
-            <input placeholder="cm" type="text" name="upperArm">
+            <input placeholder="cm" type="number" min="0" value="0" step="0.1" name="upperArm">
         </div>
         <div class="field">
             <label>Waist</label>
-            <input placeholder="cm" type="text" name="waist">
+            <input placeholder="cm" type="number" min="0" value="0" step="0.1" name="waist">
         </div>
         <div class="field">
             <label>Hips</label>
-            <input placeholder="cm" type="text" name="hips">
+            <input placeholder="cm" type="number" min="0" value="0" step="0.1" name="hips">
         </div>
     </div>
     <button class="ui blue submit button">Add Assessment</button>
@@ -38,10 +45,14 @@
 <section class="ui raised segment">
     <header class="ui header">
         ${member.firstName}
+        ${member.gender}
+
     </header>
     <table class="ui fixed table">
         <thead>
         <tr>
+            <th>Date</th>
+            <th>Time</th>
             <th>Weight</th>
             <th>Chest</th>
             <th>Thigh</th>
@@ -49,12 +60,15 @@
             <th>Waist</th>
             <th>Hips</th>
             <th>Comment</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <div class="ui bulleted list">
         #{list items:assessments, as:'assessment'}
         <tr>
+            <td>${assessment.date}</td>
+            <td>${assessment.time}</td>
             <td>${assessment.weight}</td>
             <td>${assessment.chest}</td>
             <td>${assessment.thigh}</td>

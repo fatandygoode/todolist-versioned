@@ -5,11 +5,15 @@ import play.db.jpa.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Assessment extends Model {
+    private Date date;
+    private Time time;
     private double weight, chest, thigh, upperArm, waist, hips;
     private String comment;
 
