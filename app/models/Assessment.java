@@ -1,22 +1,29 @@
 package models;
 
 import play.db.jpa.Model;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Assessment extends Model {
-    public double weight, chest, thigh, upperArm, waist, hips;
-    public String comment;
+    private Date date;
+    private Time time;
+    private double weight, chest, thigh, upperArm, waist, hips;
+    private String comment;
 
-    public Assessment(double weight, double chest, double thigh, double upperArm,
-                      double waist, double hips, String comment) {
-        this.weight = weight;
-        this.chest = chest;
-        this.thigh = thigh;
-        this.upperArm = upperArm;
-        this.waist = waist;
-        this.hips = hips;
-        this.comment = comment;
+    public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
+        setWeight(weight);
+        setChest(chest);
+        setThigh(thigh);
+        setUpperArm(upperArm);
+        setWaist(waist);
+        setHips(hips);
     }
 
     public double getWeight() {

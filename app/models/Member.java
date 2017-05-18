@@ -1,23 +1,24 @@
 package models;
 
 import play.db.jpa.Model;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.*;
 
 @Entity
-public class Member extends Person
-{
-    public double height, startingWeight;
-    public HashMap<Date, Assessment> assessments;
+public class Member extends Person {
+    private double height, startingWeight;
 
-    public Member(String email, String password,String firstName, String lastName, String gender,
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Assessment> assessments = new ArrayList<>();
+
+    public Member(String firstName, String lastName, String gender, String email, String password,
                   double height, double startingWeight) {
-        super(email, password, firstName, lastName, gender);
-        this.height = height;
-        this.startingWeight = startingWeight;
-        assessments = new HashMap<>();
+        super(firstName, lastName, gender, email, password);
+        setHeight(height);
+        setStartingWeight(startingWeight);
     }
 
     public double getHeight() {
@@ -36,7 +37,7 @@ public class Member extends Person
         this.startingWeight = startingWeight;
     }
 
-    public double getCurrentWeight() {
+    /*public double getCurrentWeight() {
         double weight = getStartingWeight();
         if (latestAssessment() != null) {
             weight = latestAssessment().getWeight();
@@ -44,20 +45,21 @@ public class Member extends Person
         return weight;
     }
 
-    public SortedSet<Date> sortedAssessmentDates() {
-        return new TreeSet<>(assessments.keySet());
-    }
-
-
     public Assessment latestAssessment() {
         return assessments.get(sortedAssessmentDates().last());
     }
 
-    public static Member findByEmail(String email) {
+    public SortedSet<Date> sortedAssessmentDates() {
+        return new TreeSet<>(assessments.keySet());
+    }*/
+
+    public static Member findByEmail(String email)
+    {
         return find("email", email).first();
     }
 
-    public boolean checkPassword(String password) {
+    public boolean checkPassword(String password)
+    {
         return this.password.equals(password);
     }
 }

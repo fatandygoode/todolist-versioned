@@ -1,5 +1,6 @@
 package utils;
 
+import models.Assessment;
 import models.Member;
 
 import java.util.ArrayList;
@@ -43,8 +44,10 @@ public class Analytics {
      * Calculate a member's body mass index, weight divided by height squared
      * @return  Member's BMI (kg m ^-2) truncated to two decimal places
      */
-    public static double calculateBMI(Member member){
-        return toTwoDecimalPlaces(member.getCurrentWeight() / (member.getHeight() * member.getHeight()));
+    public static double calculateBMI(){
+
+        return 0.1;
+                //toTwoDecimalPlaces(assessment.getWeight() / (member.getHeight() * member.getHeight()));
     }
 
     /**
@@ -60,7 +63,6 @@ public class Analytics {
      * greater than 40 "VERY SEVERELY OBESE"
      * @return  Member's BMI category
      */
-
     public static String determineBMICategory(double bmiValue) {
         if (bmiValue < 15) {
             return getBmiCategory(0);
@@ -87,7 +89,7 @@ public class Analytics {
      * Females IBW = 45.5kg + 2.3kg per inch over 5ft
      * Members under 5ft are assigned the IBW of a 5ft member
      * @return  True if starting weight = ideal body weight. False otherwise.
-     */
+     *//*
     public static boolean isIdealBodyWeight(Member member) {
         double inchHeight = convertHeightMetresToInches(member.getHeight());
             if (inchHeight > 60) {
@@ -102,7 +104,7 @@ public class Analytics {
                 idealBodyWeight = idealBodyWeight + 45.5;
             }
         return idealBodyWeight <= member.getCurrentWeight() + 2 && idealBodyWeight >= member.getCurrentWeight() - 2;
-    }
+    }*/
 
     /**
      * helper method to truncate numbers to two decimal places
