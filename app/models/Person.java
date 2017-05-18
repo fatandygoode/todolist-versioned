@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class Person extends Model {
-    public String firstName, lastName, email, password, gender;
+    public String firstName, lastName, gender, email, password;
 
     public Person(String firstName, String lastName, String gender, String email, String password) {
         setFirstName(firstName);

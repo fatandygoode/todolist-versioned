@@ -13,17 +13,25 @@ import java.util.List;
 @Entity
 public class Assessment extends Model {
     private Date date;
-    private Time time;
     private double weight, chest, thigh, upperArm, waist, hips;
     private String comment;
 
-    public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
+    public Assessment(Date date, double weight, double chest, double thigh, double upperArm, double waist, double hips) {
+        setDate(date);
         setWeight(weight);
         setChest(chest);
         setThigh(thigh);
         setUpperArm(upperArm);
         setWaist(waist);
         setHips(hips);
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public double getWeight() {

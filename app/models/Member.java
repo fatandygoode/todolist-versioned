@@ -2,9 +2,7 @@ package models;
 
 import play.db.jpa.Model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
@@ -12,13 +10,14 @@ public class Member extends Person {
     private double height, startingWeight;
 
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Assessment> assessments = new ArrayList<>();
+    public List<Assessment> assessments;
 
     public Member(String firstName, String lastName, String gender, String email, String password,
                   double height, double startingWeight) {
         super(firstName, lastName, gender, email, password);
         setHeight(height);
         setStartingWeight(startingWeight);
+        assessments = new ArrayList<>();
     }
 
     public double getHeight() {
@@ -37,7 +36,23 @@ public class Member extends Person {
         this.startingWeight = startingWeight;
     }
 
-    /*public double getCurrentWeight() {
+    public List<Assessment> getAssessments() {
+        Collections.sort(assessments, new Comparator<Assessment>() {
+             public int compare(Assessment o1, Assessment o2) {
+                return o1.getDate().compareTo(o2.getDate());
+            }
+    });
+        Collections.reverse(assessments);
+        return assessments;
+    }
+
+
+
+    public int numberOfAssessments () {
+        return getAssessments().size();
+    }
+
+    public double getCurrentWeight() {
         double weight = getStartingWeight();
         if (latestAssessment() != null) {
             weight = latestAssessment().getWeight();
@@ -46,20 +61,6 @@ public class Member extends Person {
     }
 
     public Assessment latestAssessment() {
-        return assessments.get(sortedAssessmentDates().last());
-    }
-
-    public SortedSet<Date> sortedAssessmentDates() {
-        return new TreeSet<>(assessments.keySet());
-    }*/
-
-    public static Member findByEmail(String email)
-    {
-        return find("email", email).first();
-    }
-
-    public boolean checkPassword(String password)
-    {
-        return this.password.equals(password);
+        return assessments.get(numberOfAssessments()-1);
     }
 }

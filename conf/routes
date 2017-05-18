@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -27,34 +26,4 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 # Catch all
-=======
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
-# Home page
-GET     /                                                           Start.index
-GET     /dashboard                                                  Dashboard.index
-GET     /dashboard/deleteAssessment/{assessmentId}                  Dashboard.deleteAssessment
-GET     /admin                                                      Admin.index
-GET     /about                                  About.index
-GET     /settings                               Settings.index
-GET     /logout                                 Accounts.logout
-GET     /login                                  Accounts.login
-GET     /signup                                 Accounts.signup
-GET     /assessment                             Dashboard.
-
-POST    /register                               Accounts.register
-POST    /update                                 Accounts.update
-POST    /authenticate                           Accounts.authenticate
-POST    /dashboard/addAssessment                Dashboard.addAssessment
-
-# Ignore favicon requests
-GET     /favicon.ico                            404
-
-# Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
-
-# Catch all
->>>>>>> 37736341c58f246e72bd823a727c6b4543284102
 *       /{controller}/{action}                  {controller}.{action}

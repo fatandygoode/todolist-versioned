@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Trainer Dashboard' /}
+#{menu id:"Dashboard"/}
+
+<div class="ui centre aligned">
+    <h4>Welcome ${person.firstName} ${person.lastName}!</h4>
+</div>
+
+<table class="ui table">
+
+    <tbody>
+    <div class="ui bulleted list">
+    #{list items:members, as:'members'}
+        <tr>
+            <td class="one wide">
+                <i class="small user icon"></i>
+            </td>
+            <td class="fourteen wide">
+                <a href="/trainerDashboard/${person.id}/memberAssessment/${members.id}">${members.firstName}
+                    ${members.lastName}</a>
+                <br>
+            ${members.numberOfAssessments()} assessments
+            </td>
+            <td class="one wide right aligned">
+                <a href="/trainerDashboard/deleteMember/${members.id}">
+                    <i class="large red trash icon"></i>
+                </a>
+            </td>
+        </tr>
+    #{/list}
+    </div>
+    </tbody>
+</table>
