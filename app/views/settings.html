@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #{extends 'main.html' /}
 #{set title:'Account Settings' /}
 
@@ -46,4 +47,54 @@
             <button class="ui blue submit button">Submit</button>
         </form>
     </div>
+=======
+#{extends 'main.html' /}
+#{set title:'Account Settings' /}
+
+#{menu id:"settings"/}
+
+<div class="ui two column grid basic middle aligned segment">
+    <div class="column">
+        <form class="ui stacked segment form" action="/update" method="POST">
+            <h3 class="ui header">Update details</h3>
+            <div class="two fields">
+                <div class="field">
+                    <label>First Name</label>
+                    <input placeholder="First Name" value="${member.getFirstName()}" type="text" name="firstName">
+                </div>
+                <div class="field">
+                    <label>Last Name</label>
+                    <input placeholder="Last Name" value="${member.getLastName()}" type="text" name="lastName">
+                </div>
+            </div>
+            <div class="three fields">
+                <div class="field">
+                    <label>Height</label>
+                    <input placeholder="cm" value="${member.getHeight()}" type="text" name="height">
+                </div>
+                <div class="field">
+                    <label>Weight</label>
+                    <input placeholder="kg" value="${member.getStartingWeight()} "type="text" name="startingWeight">
+                </div>
+                <div class="field">
+                    <label>Gender</label>
+                    <select class="ui dropdown" name="newGender">
+                        <option selected disabled> </option>
+                        <option value="Male"> Male</option>
+                        <option value="Female"> Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input placeholder="Email" value="${member.getEmail()}" type="text" name="email">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" value="${member.getPassword()}" name="password">
+            </div>
+            <button class="ui blue submit button">Submit</button>
+        </form>
+    </div>
+>>>>>>> 37736341c58f246e72bd823a727c6b4543284102
 </div>
