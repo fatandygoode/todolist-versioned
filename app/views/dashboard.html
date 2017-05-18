@@ -3,34 +3,69 @@
 
 #{menu id:"dashboard"/}
 
+<form class="ui stacked segment form" name="addAssessment" action="/dashboard/addAssessment" method="POST">
+    <div class="three fields">
+        <div class="field">
+            <label>Weight</label>
+            <input placeholder="kg" type="text" name="weight">
+        </div>
+        <div class="field">
+            <label>Chest</label>
+            <input placeholder="cm" type="text" name="chest">
+        </div>
+        <div class="field">
+            <label>Thigh</label>
+            <input placeholder="cm" type="text" name="thigh">
+        </div>
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label>Upper Arm</label>
+            <input placeholder="cm" type="text" name="upperArm">
+        </div>
+        <div class="field">
+            <label>Waist</label>
+            <input placeholder="cm" type="text" name="waist">
+        </div>
+        <div class="field">
+            <label>Hips</label>
+            <input placeholder="cm" type="text" name="hips">
+        </div>
+    </div>
+    <button class="ui blue submit button">Add Assessment</button>
+</form>
+
 <section class="ui raised segment">
     <header class="ui header">
-        TODO List
+        ${member.firstName}
     </header>
     <table class="ui fixed table">
         <thead>
         <tr>
-            <th>Todo</th>
-            <th></th>
+            <th>Weight</th>
+            <th>Chest</th>
+            <th>Thigh</th>
+            <th>Upper Arm</th>
+            <th>Waist</th>
+            <th>Hips</th>
+            <th>Comment</th>
         </tr>
         </thead>
         <tbody>
         <div class="ui bulleted list">
-        #{list items:todolist, as:'todo'}
+        #{list items:assessments, as:'assessment'}
         <tr>
-            <td> ${todo.title} </td>
-            <td> <a href="/dashboard/${member.id}/deletetodo/${todo.id} " class="ui tiny red button"> Delete </a> </td>
+            <td>${assessment.weight}</td>
+            <td>${assessment.chest}</td>
+            <td>${assessment.thigh}</td>
+            <td>${assessment.upperArm}</td>
+            <td>${assessment.waist}</td>
+            <td>${assessment.hips}</td>
+            <td>${assessment.comment}</td>
+            <td> <a href="/dashboard/deleteAssessment/${assessment.id} " class="ui tiny red button"> Delete </a> </td>
         #{/list}
         </div>
         </tbody>
     </table>
 
 </section>
-
-<form class="ui stacked segment form" action="/dashboard/addtodo" method="POST">
-    <div class="field">
-        <label>Title</label>
-        <input placeholder="Title" type="text" name="title">
-    </div>
-    <button class="ui blue submit button">Add Todo</button>
-</form>

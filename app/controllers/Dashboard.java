@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Assessment;
 import models.Member;
 import models.Todo;
 import play.Logger;
@@ -12,26 +13,26 @@ public class Dashboard extends Controller
   public static void index() {
     Logger.info("Rendering Dashboard");
     Member member = Accounts.getLoggedInMember();
-    List<Todo> todolist = member.todolist;
-    render("dashboard.html", member, todolist);
+    List<Assessment> assessments = member.assessments;
+    render("dashboard.html", member, assessments);
   }
 
-  public static void addTodo(String title) {
+  public static void addAssessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
     Member member = Accounts.getLoggedInMember();
-    Todo todo = new Todo(title);
-    member.todolist.add(todo);
+    Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips);
+    member.assessments.add(assessment);
     member.save();
-    Logger.info("Adding Todo" + title);
+    Logger.info("Adding Assessment" + weight);
     redirect("/dashboard");
   }
 
-  public static void deleteTodo(Long id, Long todoid) {
-    Member member = Member.findById(id);
-    Todo todo = Todo.findById(todoid);
-    member.todolist.remove(todo);
+  public static void deleteAssessment(Long assessmentId) {
+    Member member = Accounts.getLoggedInMember();
+    Assessment assessment = Assessment.findById(assessmentId);
+    member.assessments.remove(assessment);
     member.save();
-    todo.delete();
-    Logger.info("Deleting " + todo.title);
+    assessment.delete();
+    Logger.info("Deleting " + assessment.getWeight());
     redirect("/dashboard");
   }
 }

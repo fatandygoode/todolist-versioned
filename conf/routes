@@ -1,20 +1,26 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
-# ~
-
-GET     /                                       Start.index
-
-# Accounts
-GET    /signup                                  Accounts.signup
-GET    /login                                   Accounts.login
-POST   /register                                Accounts.register
-POST   /authenticate                            Accounts.authenticate
-GET    /logout                                  Accounts.logout
+# ~~~~
 
 # Home page
-GET     /dashboard                              Dashboard.index
-GET     /dashboard/{id}/deletetodo/{todoid}     Dashboard.deleteTodo
+GET     /                                                           Start.index
+GET     /dashboard                                                  Dashboard.index
+GET     /dashboard/deleteAssessment/{assessmentId}                  Dashboard.deleteAssessment
+GET     /trainerDashboard                                           Dashboard.trainerIndex
+GET     /trainerDashboard/{trainerId}/memberAssessment/{memberId}   Dashboard.memberAssessment
+GET     /admin                                                      Admin.index
 GET     /about                                  About.index
+GET     /logout                                 Accounts.logout
+GET     /login                                  Accounts.login
+GET     /trainerLogin                           Accounts.trainerLogin
+GET     /signup                                 Accounts.signup
+GET     /assessment                             Dashboard.
+
+POST    /register                               Accounts.register
+POST    /authenticate                           Accounts.authenticate
+POST    /authenticateTrainer                    Accounts.authenticateTrainer
+POST    /dashboard/addAssessment                                    Dashboard.addAssessment
+POST    /memberAssessment/{trainerid}/{memberid}/updateComment/{assessmentid}   Dashboard.updateComment
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

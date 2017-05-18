@@ -13,7 +13,7 @@ public class Member extends Person {
     private double height, startingWeight;
 
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Todo> todolist = new ArrayList<Todo>();
+    public List<Assessment> assessments = new ArrayList<>();
 
     public Member(String firstName, String lastName, String gender, String email, String password,
                   double height, double startingWeight) {
