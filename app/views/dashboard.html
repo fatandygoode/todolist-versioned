@@ -2,6 +2,28 @@
 #{set title:'Dashboard' /}
 #{menu id:"dashboard"/}
 
+<div class="ui center aligned middle aligned segment">
+    <div class="ui four column grid">
+        <div class="column">
+            <h3>${member.firstName} ${member.lastName}</h3>
+        </div>
+        <div class="column">
+            <h3>BMI ${member.calculateBMI()}</h3>
+        </div>
+        <div class="column">
+            <h3>Ideal Body Weight ${member.isIdealBodyWeight()}</h3>
+        </div>
+        <div class="column">
+        <h3>${member.determineBMICategory(member.calculateBMI())}</h3>
+    </div>
+
+
+    </div>
+</div>
+
+
+
+
 <form class="ui stacked segment form" name="addAssessment" action="/dashboard/addAssessment" method="POST">
     <div class="two fields">
 
@@ -42,7 +64,7 @@
 <section class="ui raised segment">
     <header class="ui header">
         ${member.firstName}
-        ${member.gender}
+        ${member.lastName}
 
     </header>
     <table class="ui fixed table">

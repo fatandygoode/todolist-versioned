@@ -3,7 +3,7 @@
 #{menu id:"Dashboard"/}
 
 <div class="ui centre aligned">
-    <h4>Welcome ${person.firstName} ${person.lastName}!</h4>
+    ${person.firstName} ${person.lastName}
 </div>
 
 <table class="ui table">
@@ -13,9 +13,9 @@
     #{list items:members, as:'members'}
         <tr>
             <td class="one wide">
-                <i class="small user icon"></i>
+                <i class="user icon"></i>
             </td>
-            <td class="fourteen wide">
+            <td class="twelve wide">
                 <a href="/dashboard/memberAssessments/${members.id}">
                     ${members.firstName}
                     ${members.lastName}</a>
@@ -23,8 +23,8 @@
             ${members.numberOfAssessments()} assessments
             </td>
             <td class="one wide right aligned">
-                <a href="/dashboard/deleteMember/${members.id}">
-                    <i class="large red trash icon"></i>
+                <a href="/dashboard/deleteMember/${members.id}" class="ui tiny red button">
+                    Delete
                 </a>
             </td>
         </tr>
