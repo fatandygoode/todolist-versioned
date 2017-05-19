@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Trainer Dashboard' /}
+#{set title:'Trainer Homepage' /}
 #{menu id:"Dashboard"/}
 
 <div class="ui centre aligned">
@@ -16,13 +16,14 @@
                 <i class="small user icon"></i>
             </td>
             <td class="fourteen wide">
-                <a href="/trainerDashboard/${person.id}/memberAssessment/${members.id}">${members.firstName}
+                <a href="/dashboard/memberAssessments/${members.id}">
+                    ${members.firstName}
                     ${members.lastName}</a>
                 <br>
             ${members.numberOfAssessments()} assessments
             </td>
             <td class="one wide right aligned">
-                <a href="/trainerDashboard/deleteMember/${members.id}">
+                <a href="/dashboard/deleteMember/${members.id}">
                     <i class="large red trash icon"></i>
                 </a>
             </td>

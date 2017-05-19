@@ -46,7 +46,9 @@ public class Member extends Person {
         return assessments;
     }
 
-
+    public Assessment getAssessment(int index) {
+        return getAssessments().get(index);
+    }
 
     public int numberOfAssessments () {
         return getAssessments().size();

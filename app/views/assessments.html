@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'Assessments' /}
+#{menu id:"dashboard"/}
+
+<section class="ui raised segment">
+    <header class="ui header">
+        ${member.firstName}
+        ${member.lastName}
+
+    </header>
+    <table class="ui fixed table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Weight</th>
+            <th>Chest</th>
+            <th>Thigh</th>
+            <th>Upper Arm</th>
+            <th>Waist</th>
+            <th>Hips</th>
+            <th>Comment</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <div class="ui bulleted list">
+                #{list items:assessments, as:'assessment'}
+                <tr>
+                    <td>${assessment.date}</td>
+                    <td>${assessment.weight}</td>
+                    <td>${assessment.chest}</td>
+                    <td>${assessment.thigh}</td>
+                    <td>${assessment.upperArm}</td>
+                    <td>${assessment.waist}</td>
+                    <td>${assessment.hips}</td>
+                    <td>${assessment.getComment()}</td>
+                    <td><a href="/dashboard/addComment/${assessment.id}" title="Add Comment">
+                        <i class="write icon"></i>
+                    </a>
+
+                    </td>
+                </tr>
+                #{/list}
+            </div>
+        </tbody>
+    </table>
+</section>

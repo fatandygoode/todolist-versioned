@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Assessments' /}
+#{menu id:"dashboard"/}
+
+<section class="ui raised segment">
+    <header class="ui header">
+
+
+    </header>
+    <table class="ui fixed table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Weight</th>
+            <th>Chest</th>
+            <th>Thigh</th>
+            <th>Upper Arm</th>
+            <th>Waist</th>
+            <th>Hips</th>
+            <th>Comment</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="ui bulleted list">
+            <tr>
+                <td>${assessment.date}</td>
+                <td>${assessment.weight}</td>
+                <td>${assessment.chest}</td>
+                <td>${assessment.thigh}</td>
+                <td>${assessment.upperArm}</td>
+                <td>${assessment.waist}</td>
+                <td>${assessment.hips}</td>
+                <td>${assessment.comment}</td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <form class="ui stacked segment form" name="setComment" action="/dashboard/setComment/${assessment.id}" method="POST">
+        <div class="field">
+            <input placeholder="Type comment here" type="text" name="comment">
+        </div>
+        <button class="ui blue submit button">Add Comment</button>
+    </form>
+</section>

@@ -29,7 +29,7 @@ public class Dashboard extends Controller {
 			render("dashboard.html", member, assessments);
 		} else if (person instanceof Trainer) {
 			Logger.info("Rendering Trainer Homepage");
-			List<Member> members = Member.findAll();
+			List<Member> members = getMembers();
 			render("trainerhomepage.html", person, members);
 		}
 	}
@@ -46,8 +46,7 @@ public class Dashboard extends Controller {
     }
 
 	public static void deleteAssessment(Long assessmentId) {
-        Person person = getLoggedInPerson();
-        Member member =(Member) person;
+        Member member = getLoggedInMember();
 		Assessment assessment = Assessment.findById(assessmentId);
 		member.getAssessments().remove(assessment);
 		member.save();
@@ -55,4 +54,33 @@ public class Dashboard extends Controller {
 		Logger.info("Deleting " + assessment.getDate());
 		redirect("/dashboard");
 	  }
+
+    public static void deleteMember(Long memberId) {
+	    Member member = Member.findById(memberId);
+        Logger.info("Deleting " + member.getEmail());
+        member.delete();
+        redirect("/dashboard");
+    }
+
+    public static List<Member> getMembers() {
+        return Member.findAll();
+    }
+
+    public static void memberAssessments(Long memberId) {
+        Member member = Member.findById(memberId);
+        List<Assessment> assessments = member.getAssessments();
+        render("assessments.html", member, assessments);
+    }
+
+    public static void addComment(Long assessmentId) {
+        Assessment assessment = Assessment.findById(assessmentId);
+        render("/comment.html", assessment);
+    }
+
+    public static void setComment(String comment, Long assessmentId) {
+        Assessment assessment = Assessment.findById(assessmentId);
+        assessment.setComment(comment);
+        Logger.info("Adding comment " + assessment.getDate());
+        redirect("/dashboard");
+    }
 }

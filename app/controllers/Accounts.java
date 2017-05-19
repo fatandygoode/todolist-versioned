@@ -25,17 +25,23 @@ public class Accounts extends Controller {
     }
 
     public static void update(String firstName, String lastName, String gender, String email, String password,
-                                double height, double startingWeight) {
+                                double height, double startingWeight, String speciality) {
         Logger.info("Updating settings for user: " + email);
-        Member member = getLoggedInMember();
-        member.setFirstName(firstName);
-        member.setLastName(lastName);
-        member.setGender(gender);
-        member.setEmail(email);
-        member.setPassword(password);
-        member.setHeight(height);
-        member.setStartingWeight(startingWeight);
-        member.save();
+        Person person = getLoggedInPerson();
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
+        person.setGender(gender);
+        person.setEmail(email);
+        person.setPassword(password);
+        if (person instanceof Member){
+            Member member =(Member) person;
+            member.setHeight(height);
+            member.setStartingWeight(startingWeight);
+        } else if (person instanceof Trainer) {
+            Trainer trainer =(Trainer) person;
+            trainer.setSpeciality(speciality);
+        }
+        person.save();
         redirect("/dashboard");
     }
 
@@ -58,25 +64,11 @@ public class Accounts extends Controller {
     }
 
     public static Member getLoggedInMember() {
-        Member member = null;
-        if (session.contains("logged_in_Memberid")) {
-            String memberId = session.get("logged_in_Memberid");
-            member = Member.findById(Long.parseLong(memberId));
-        } else {
-            login();
-        }
-        return member;
+        return (Member) getLoggedInPerson();
     }
 
     public static Trainer getLoggedInTrainer() {
-        Trainer trainer = null;
-        if (session.contains("logged_in_TrainerId")) {
-            String trainerId = session.get("logged_in_TrainerId");
-            trainer = Trainer.findById(Long.parseLong(trainerId));
-        } else {
-            login();
-        }
-        return trainer;
+        return (Trainer) getLoggedInPerson();
     }
 
     public static Person getLoggedInPerson() {
