@@ -107,7 +107,11 @@ public class Member extends Person {
     }
 
     public Assessment latestAssessment() {
-        return getAssessments().get(0);
+        if (numberOfAssessments() != 0 ) {
+            return getAssessments().get(0);
+        } else {
+            return null;
+        }
     }
 
 
